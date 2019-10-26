@@ -1,3 +1,26 @@
+" vim-toggle - toggle Vim's windows
+"
+" Maintainer: bscheue <bscheue@andrew.cmu.edu>
+" Website:  https://github.com/bscheue/vim-toggle
+"
+" Use this command to get help on vim-qf:
+"
+"     :help vim-toggle
+"
+" To index vim-toggle's documentation:
+"
+"     :helptags ~/.vim/doc
+"
+
+if exists("g:loaded_toggle") || &compatible
+   finish
+endif
+let g:loaded_toggle = 1
+
+let s:save_cpo = &cpo
+set cpo&vim
+
+
 function! CheckQfWindowOpen()
   for winnr in range(1, winnr('$'))
     if getwinvar(winnr, '&syntax') == 'qf'
@@ -20,8 +43,10 @@ endfunction
 function! ToggleLocWindow()
   if get(getloclist(0, {'winid':0}), 'winid', 0)
     lclose
-  else
+  elseif len(getloclist(win_getid())) != 0
     lopen
+  else
+    echohl ErrorMsg | echo "no location list for current window" | echohl None
   endif
 endfunction
 
@@ -76,6 +101,9 @@ function TogglePreviewWindow()
 endfunction
 
 
-nnoremap <silent> yoc :<c-u>call ToggleQfWindow()<CR>
-nnoremap <silent> yol :<c-u>call ToggleLocWindow()<CR>
-nnoremap <silent> yot :<c-u>call TogglePreviewWindow()<CR>
+nnoremap <silent> <Plug>ToggleQfWindow :<c-u>call ToggleQfWindow()<CR>
+nnoremap <silent> <Plug>ToggleLocWindow :<c-u>call ToggleLocWindow()<CR>
+nnoremap <silent> <Plug>TogglePreviewWindow :<c-u>call TogglePreviewWindow()<CR>
+
+
+let &cpo = s:save_cpo
