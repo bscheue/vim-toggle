@@ -11,6 +11,8 @@
 "
 "     :helptags ~/.vim/doc
 "
+" TODO:
+" - switch functions to use <SID>
 
 if exists("g:loaded_toggle") || &compatible
    finish
@@ -34,8 +36,10 @@ endfunction
 function! ToggleQfWindow()
   if CheckQfWindowOpen()
     cclose
-  else
+  elseif len(getqflist()) != 0
     copen
+  else
+    echohl ErrorMsg | echo "qf list is empty" | echohl None
   endif
 endfunction
 
