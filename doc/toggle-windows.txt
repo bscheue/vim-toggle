@@ -1,0 +1,79 @@
+*toggle-windows.txt*    Easily toggle Vim's windows.
+
+
+VIM-TOGGLE-WINDOWS DOCUMENTATION - Brian Scheuermann
+
+====================================================================
+CONTENTS
+
+    1. Introduction ......... |toggle-windows-intro|
+    2. Mappings ............. |toggle-windows-mappings|
+    3. To-do ............. |toggle-windows-to-do|
+    4. Changelog ............. |toggle-windows-changelog|
+
+
+====================================================================
+Introduction                                  *toggle-windows-intro*
+
+A small plugin to toggle Vim's quickfix, location, and preview windows.
+The plugin provides <Plug> mappings to toggle these windows
+and does not create any other mappings.  All of the mappings are
+compatible with other ways of opening and closing
+the windows (e.g. opening and closing the quickfix window with |:copen| and
+|:cclose| is compatible with the mapping to toggle the quickfix window).
+
+
+====================================================================
+Mappings                                   *toggle-windows-mappings*
+
+Provided mappings:
+
+--------------------------------------------------------------------
+                                              *<Plug>ToggleQfWindow*
+
+Toggles the quickfix window using |:copen| and |:cclose|.
+If the quickfix list is empty, gives the user a message
+and does not open the quickfix window.
+
+Example:
+
+  nmap <Leader>q <Plug>ToggleQfWindow
+
+
+--------------------------------------------------------------------
+                                              *<Plug>ToggleLocWindow*
+
+Toggles the location window using |:lopen| and |:lclose|.
+If the location list is empty, gives the user a message
+and does not open the location window.
+
+Example:
+
+  nmap <Leader>l <Plug>ToggleLocWindow
+
+--------------------------------------------------------------------
+                                           *<Plug>TogglePreviewWindow*
+
+Toggles the preview window.
+If there is no preview window associated with the
+current tab page, gives the user a message and does
+not attempt to open the preview window.
+If there is a preview window associated with the current
+tab page, opens the preview window and restores
+both the window state and the tag stack associated
+with the window.
+
+Example:
+
+  nmap <Leader>p <Plug>TogglePreviewWindow
+
+
+====================================================================
+To-do                                            *toggle-windows-todo*
+
+- Add commands to toggle windows
+- Toggle other windows?
+
+
+====================================================================
+Changlelog                                 *toggle-windows-changlelog*
