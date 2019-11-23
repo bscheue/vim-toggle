@@ -27,6 +27,11 @@ augroup Preview
 augroup end
 
 
+command! ToggleQfWindow :call toggle#ToggleQfWindow()
+command! ToggleLocWindow :call toggle#ToggleLocWindow()
+command! TogglePreviewWindow :call toggle#TogglePreviewWindow()
+
+
 nnoremap <silent> <Plug>ToggleQfWindow :<c-u>call toggle#ToggleQfWindow()<CR>
 nnoremap <silent> <Plug>ToggleLocWindow :<c-u>call toggle#ToggleLocWindow()<CR>
 nnoremap <silent> <Plug>TogglePreviewWindow :<c-u>call toggle#TogglePreviewWindow()<CR>

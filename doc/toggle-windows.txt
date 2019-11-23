@@ -8,12 +8,13 @@ CONTENTS
 
     1. Introduction ......... |toggle-windows-intro|
     2. Mappings ............. |toggle-windows-mappings|
-    3. To-do ............. |toggle-windows-to-do|
-    4. Changelog ............. |toggle-windows-changelog|
+    3. Commands ............. |toggle-windows-commands|
+    4. To-do ................ |toggle-windows-to-do|
+    5. Changelog ............ |toggle-windows-changelog|
 
 
 ====================================================================
-Introduction                                  *toggle-windows-intro*
+Introduction                                    *toggle-windows-intro*
 
 A small plugin to toggle Vim's quickfix, location, and preview windows.
 The plugin provides <Plug> mappings to toggle these windows
@@ -24,12 +25,12 @@ the windows (e.g. opening and closing the quickfix window with |:copen| and
 
 
 ====================================================================
-Mappings                                   *toggle-windows-mappings*
+Mappings                                     *toggle-windows-mappings*
 
 Provided mappings:
 
 --------------------------------------------------------------------
-                                              *<Plug>ToggleQfWindow*
+                                                *<Plug>ToggleQfWindow*
 
 Toggles the quickfix window using |:copen| and |:cclose|.
 If the quickfix list is empty, gives the user a message
@@ -41,7 +42,7 @@ Example:
 
 
 --------------------------------------------------------------------
-                                              *<Plug>ToggleLocWindow*
+                                               *<Plug>ToggleLocWindow*
 
 Toggles the location window using |:lopen| and |:lclose|.
 If the location list is empty, gives the user a message
@@ -69,11 +70,32 @@ Example:
 
 
 ====================================================================
+Commands                                     *toggle-windows-commands*
+
+Commands are provided to go along with the mappings.
+
+--------------------------------------------------------------------
+                                                     :*ToggleQfWindow*
+
+See |<Plug>ToggleQfWindow|.
+
+--------------------------------------------------------------------
+                                                    :*ToggleLocWindow*
+
+See |<Plug>ToggleLocWindow|.
+
+--------------------------------------------------------------------
+                                                :*TogglePreviewWindow*
+
+See |<Plug>TogglePreviewWindow|.
+
+====================================================================
 To-do                                            *toggle-windows-todo*
 
-- Add commands to toggle windows
 - Toggle other windows?
 
 
 ====================================================================
-Changlelog                                 *toggle-windows-changlelog*
+Changelog                                   *toggle-windows-changelog*
+
+11/23/19: Add commands
