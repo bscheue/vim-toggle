@@ -1,6 +1,7 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
+
 function! s:CheckQfWindowOpen()
   for winnr in range(1, winnr('$'))
     if getwinvar(winnr, '&syntax') == 'qf'
@@ -23,7 +24,9 @@ endfunction
 
 
 function! toggle#ToggleLocWindow()
-  if get(getloclist(0, {'winid':0}), 'winid', 0)
+  if v:version < 801
+    echohl ErrorMsg | echo "need vim 8.1 to toggle loc list window" | echohl None
+  elseif get(getloclist(0, {'winid':0}), 'winid', 0)
     lclose
   elseif len(getloclist(win_getid())) != 0
     lopen
@@ -46,7 +49,10 @@ endfunction
 function! toggle#SavePreviewWindow()
   let t:previewFile = @%
   let t:previewWin = winsaveview()
-  let t:previewTags = gettagstack()
+  if v:version >= 802
+        \ || v:version == 801 && has("patch519")
+    let t:previewTags = gettagstack()
+  endif
 endfunction
 
 
@@ -56,11 +62,17 @@ function! s:RestorePreviewWindow()
     " since pedit will overwrite them
     let l:previewFile = t:previewFile
     let l:previewWin = t:previewWin
-    let l:previewTags = t:previewTags
+    if v:version >= 802
+          \ || v:version == 801 && has("patch519")
+      let l:previewTags = t:previewTags
+    endif
     exec "pedit " . l:previewFile
     wincmd P
     call winrestview(l:previewWin)
-    call settagstack(win_getid(), l:previewTags)
+    if v:version >= 802
+          \ || v:version == 801 && has("patch519")
+      call settagstack(win_getid(), l:previewTags)
+    endif
     wincmd p
   else
     echohl ErrorMsg | echo "preview window has not been opened" | echohl None
