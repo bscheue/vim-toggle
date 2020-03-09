@@ -1,16 +1,12 @@
 " vim-toggle-windows - toggle Vim's windows
 "
-" Maintainer: bscheue <bscheue@andrew.cmu.edu>
+" Maintainer: bscheue <bscheuer@andrew.cmu.edu>
 " Website:  https://github.com/bscheue/vim-toggle-windows
 "
 " Use this command to get help on vim-toggle-windows:
 "
 "     :help vim-toggle-windows
-"
-" To index vim-toggle's documentation:
-"
-"     :helptags ~/.vim/doc
-"
+
 
 if exists("g:loaded_toggle") || &compatible
    finish
