@@ -46,16 +46,6 @@ function! s:CheckPreviewWindowOpen()
 endfunction
 
 
-function! toggle#SavePreviewWindow()
-  let t:previewFile = @%
-  let t:previewWin = winsaveview()
-  if v:version >= 802
-        \ || v:version == 801 && has("patch519")
-    let t:previewTags = gettagstack()
-  endif
-endfunction
-
-
 function! s:RestorePreviewWindow()
   if exists("t:previewFile")
     " need to save the variables local to the function
@@ -66,7 +56,7 @@ function! s:RestorePreviewWindow()
           \ || v:version == 801 && has("patch519")
       let l:previewTags = t:previewTags
     endif
-    exec "pedit " . l:previewFile
+    execute "pedit " . l:previewFile
     wincmd P
     call winrestview(l:previewWin)
     if v:version >= 802
@@ -80,6 +70,16 @@ function! s:RestorePreviewWindow()
 endfunction
 
 
+function! toggle#SavePreviewWindow()
+  let t:previewFile = @%
+  let t:previewWin = winsaveview()
+  if v:version >= 802
+        \ || v:version == 801 && has("patch519")
+    let t:previewTags = gettagstack()
+  endif
+endfunction
+
+
 function! toggle#TogglePreviewWindow()
   if s:CheckPreviewWindowOpen()
     pclose
@@ -89,4 +89,49 @@ function! toggle#TogglePreviewWindow()
 endfunction
 
 
-let &cpo = s:save_cpo
+function! toggle#SaveHelpWindow()
+  " differs from SavePreviewWindow because
+  " help command requires filename without path
+  " but pedit should have the full path
+  let t:helpFile = expand('%:t')
+  let t:helpWin = winsaveview()
+  if v:version >= 802
+        \ || v:version == 801 && has("patch519")
+    let t:helpTags = gettagstack()
+  endif
+endfunction
+
+
+function! s:RestoreHelpWindow()
+  if exists("t:helpFile")
+    " need to save the variables local to the function
+    " since pedit will overwrite them
+    let l:helpFile = t:helpFile
+    let l:helpWin = t:helpWin
+    if v:version >= 802
+          \ || v:version == 801 && has("patch519")
+      let l:helpTags = t:helpTags
+    endif
+    execute "help " . l:helpFile
+    call winrestview(l:helpWin)
+    if v:version >= 802
+          \ || v:version == 801 && has("patch519")
+      call settagstack(win_getid(), l:helpTags)
+    endif
+    wincmd p
+  else
+    echohl ErrorMsg | echo "help window has not been opened" | echohl None
+  endif
+endfunction
+
+
+function! toggle#ToggleHelpWindow()
+  for winnr in range(1, winnr('$'))
+    if getwinvar(winnr, '&syntax') == 'help'
+      helpclose
+      return
+    endif
+  endfor
+  call s:RestoreHelpWindow()
+endfunction
+

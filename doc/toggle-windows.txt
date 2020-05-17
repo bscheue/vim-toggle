@@ -16,12 +16,12 @@ CONTENTS
 ====================================================================
 Introduction                                    *toggle-windows-intro*
 
-A small plugin to toggle Vim's quickfix, location, and preview windows.
-The plugin provides <Plug> mappings to toggle these windows
-and does not create any other mappings.  All of the mappings are
-compatible with other ways of opening and closing
-the windows (e.g. opening and closing the quickfix window with |:copen| and
-|:cclose| is compatible with the mapping to toggle the quickfix window).
+A small plugin to toggle Vim's quickfix, location, and preview windows. The
+plugin provides <Plug> mappings to toggle these windows and does not create any
+other mappings. All of the mappings are compatible with other ways of opening
+and closing the windows (e.g. opening and closing the quickfix window with
+|:copen| and |:cclose| is compatible with the mapping to toggle the quickfix
+window).
 
 
 ====================================================================
@@ -29,24 +29,26 @@ Mappings                                     *toggle-windows-mappings*
 
 Provided mappings:
 
---------------------------------------------------------------------
-                                                *<Plug>ToggleQfWindow*
 
-Toggles the quickfix window using |:copen| and |:cclose|.
-If the quickfix list is empty, gives the user a message
-and does not open the quickfix window.
+--------------------------------------------------------------------
+                                               *<Plug>ToggleHelpWindow*
+
+Toggles a help window using |:help| (with the filename of an open help file)
+and |:helpclose|. If no help window is open, gives the user a message and does
+not open a help window. When the window is toggled to appear again, it is
+created by calling |:help| (with the filename given as an argument) from the
+current window, so it in a different position if the selected window is
+different from the window that the help file was originally opened in.
 
 Example:
 
-  nmap <Leader>q <Plug>ToggleQfWindow
-
+  nmap <Leader>h <Plug>ToggleHelpWindow
 
 --------------------------------------------------------------------
                                                *<Plug>ToggleLocWindow*
 
-Toggles the location window using |:lopen| and |:lclose|.
-If the location list is empty, gives the user a message
-and does not open the location window.
+Toggles the location window using |:lopen| and |:lclose|. If the location list
+is empty, gives the user a message and does not open the location window.
 
 Example:
 
@@ -55,18 +57,25 @@ Example:
 --------------------------------------------------------------------
                                            *<Plug>TogglePreviewWindow*
 
-Toggles the preview window.
-If there is no preview window associated with the
-current tab page, gives the user a message and does
-not attempt to open the preview window.
-If there is a preview window associated with the current
-tab page, opens the preview window and restores
-both the window state and the tag stack associated
-with the window.
+Toggles the preview window using |:pclose| and |:pedit|. If there is no preview
+window associated with the current tab page, gives the user a message and does
+not attempt to open the preview window. If there is a preview window associated
+with the current tab page, opens the preview window and restores both the
+window state and the tag stack associated with the window.
 
 Example:
 
   nmap <Leader>p <Plug>TogglePreviewWindow
+
+--------------------------------------------------------------------
+                                                *<Plug>ToggleQfWindow*
+
+Toggles the quickfix window using |:copen| and |:cclose|. If the quickfix list
+is empty, gives the user a message and does not open the quickfix window.
+
+Example:
+
+  nmap <Leader>q <Plug>ToggleQfWindow
 
 
 ====================================================================
@@ -75,9 +84,9 @@ Commands                                     *toggle-windows-commands*
 Commands are provided to go along with the mappings.
 
 --------------------------------------------------------------------
-                                                     :*ToggleQfWindow*
+                                                   :*ToggleHelpWindow*
 
-See |<Plug>ToggleQfWindow|.
+See |<Plug>ToggleHelpWindow|.
 
 --------------------------------------------------------------------
                                                     :*ToggleLocWindow*
@@ -89,13 +98,15 @@ See |<Plug>ToggleLocWindow|.
 
 See |<Plug>TogglePreviewWindow|.
 
-====================================================================
-To-do                                            *toggle-windows-todo*
+--------------------------------------------------------------------
+                                                     :*ToggleQfWindow*
 
-- Toggle other windows?
+See |<Plug>ToggleQfWindow|.
 
 
 ====================================================================
 Changelog                                   *toggle-windows-changelog*
 
 11/23/19: Add commands
+05/17/20: Add functionality to toggle a help window
+

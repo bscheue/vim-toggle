@@ -1,5 +1,5 @@
 # vim-toggle-windows
-Mappings to easily toggle the quickfix, location, and preview windows.
+Mappings to easily toggle help, location, preview, and quickfix windows.
 
 ## Installation
 Using your plugin / runtimepath manager of choice. If you're using a newer
@@ -14,9 +14,9 @@ To view the helpfile for this plugin, run `:help toggle-windows`.
 ## Usage
 To use this plugin, add mappings to your `.vimrc`:
 
-To toggle the quickfix window:
+To toggle a help window:
 ```
-nmap <key> <Plug>ToggleQfWindow
+nmap <key> <Plug>ToggleHelpWindow
 ```
 
 To toggle the location window:
@@ -27,6 +27,11 @@ nmap <key> <Plug>ToggleLocWindow
 To toggle the preview window:
 ```
 nmap <key> <Plug>TogglePreviewWindow
+```
+
+To toggle the quickfix window:
+```
+nmap <key> <Plug>ToggleQfWindow
 ```
 
 Toggling is compatible with other methods of opening and closing
