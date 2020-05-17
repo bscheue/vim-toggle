@@ -135,3 +135,4 @@ function! toggle#ToggleHelpWindow()
   call s:RestoreHelpWindow()
 endfunction
 
+let &cpo = s:save_cpo
