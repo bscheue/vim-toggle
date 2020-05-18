@@ -19,7 +19,11 @@ set cpo&vim
 
 augroup Preview
   autocmd!
-  autocmd WinLeave * if &previewwindow | call toggle#SavePreviewWindow() | endif
+  autocmd WinLeave * if &previewwindow
+        \ | call toggle#SavePreviewWindow()
+        \ | elseif &filetype ==# "help"
+        \ | call toggle#SaveHelpWindow()
+        \ | endif
 augroup end
 
 
