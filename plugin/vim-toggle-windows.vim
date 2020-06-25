@@ -1,6 +1,6 @@
 " vim-toggle-windows - toggle Vim's windows
 "
-" Maintainer: bscheue <bscheuer@andrew.cmu.edu>
+" Maintainer: bscheue <brians1123@gmail.com>
 " Website:  https://github.com/bscheue/vim-toggle-windows
 "
 " Use this command to get help on vim-toggle-windows:
